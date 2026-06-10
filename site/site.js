@@ -14,6 +14,11 @@
     a.addEventListener('click', function () { document.body.classList.remove('menu-open'); });
   });
 
+  /* ---- hero headline: force final state if CSS animation timelines are frozen ---- */
+  setTimeout(function () {
+    document.querySelectorAll('.hw').forEach(function (el) { el.classList.add('hw-done'); });
+  }, 1400);
+
   /* ---- nav shrink on scroll ---- */
   var nav = document.querySelector('.nav');
   var onScrollNav = function () { nav.classList.toggle('scrolled', window.scrollY > 40); };
