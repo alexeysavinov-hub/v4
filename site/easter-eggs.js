@@ -173,4 +173,7 @@
       if (card && card.classList.contains('on')) hide(); else { show(); award('inspect', 'Inspect Mode — stats revealed'); }
     });
   });
+
+  /* expose tiny API for other egg modules */
+  window.__tagEggs = { burst: burst, award: award, achievement: achievement, reduced: reduced };
 })();
