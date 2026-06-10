@@ -94,7 +94,7 @@
 
   /* ============ 2. pixel confetti on form sent ============ */
   function burst(x, y) {
-    var colors = ['#C9641C', '#D9822F', '#E8A33D', '#F2F1ED', '#9A978F'];
+    var colors = ['#C68A1F', '#E5AC3F', '#E8A33D', '#F2F1ED', '#9A978F'];
     var n = reduced ? 0 : 44;
     for (var i = 0; i < n; i++) {
       var p = document.createElement('div');

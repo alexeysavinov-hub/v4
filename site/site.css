@@ -4,8 +4,8 @@
   --ink: #F2F1ED;
   --muted: #9A978F;
   --faint: #75736C;
-  --accent: #C9641C;
-  --accent-text: #D9822F;
+  --accent: #C68A1F;
+  --accent-text: #E5AC3F;
   --card: rgba(255,255,255,.035);
   --border: rgba(255,255,255,.08);
   --display: 'Space Grotesk', sans-serif;
@@ -66,7 +66,7 @@ html[data-bg="pixels-drift"] body::after {
 html[data-bg="aurora"] body::before {
   inset: -25%;
   background:
-    radial-gradient(50% 40% at 24% 28%, rgba(217,130,47,.13), transparent 70%),
+    radial-gradient(50% 40% at 24% 28%, rgba(229,172,63,.13), transparent 70%),
     radial-gradient(55% 45% at 78% 72%, rgba(96,114,160,.11), transparent 70%);
   will-change: transform;
   animation: bg-aurora-a 16s ease-in-out infinite alternate;
@@ -74,7 +74,7 @@ html[data-bg="aurora"] body::before {
 html[data-bg="aurora"] body::after {
   content: ''; position: fixed; inset: -25%; z-index: 0; pointer-events: none;
   background:
-    radial-gradient(42% 36% at 72% 22%, rgba(217,130,47,.09), transparent 70%),
+    radial-gradient(42% 36% at 72% 22%, rgba(229,172,63,.09), transparent 70%),
     radial-gradient(48% 40% at 22% 78%, rgba(242,241,237,.05), transparent 70%);
   will-change: transform, opacity;
   animation: bg-aurora-b 23s ease-in-out infinite alternate;
@@ -176,7 +176,7 @@ body.menu-open .menu a:nth-child(5) { transition-delay: .26s; }
 .hero { position: relative; min-height: 100svh; display: flex; align-items: center; overflow: clip; padding: 120px 0 56px; }
 .plx-layer { position: absolute; inset: 0; pointer-events: none; will-change: transform; }
 .glow { position: absolute; border-radius: 50%; pointer-events: none; will-change: transform; }
-.glow-a { width: 420px; height: 420px; top: -90px; right: -140px; background: radial-gradient(circle, rgba(217,130,47,.14), transparent 70%); animation: drift 26s ease-in-out infinite alternate; }
+.glow-a { width: 420px; height: 420px; top: -90px; right: -140px; background: radial-gradient(circle, rgba(229,172,63,.14), transparent 70%); animation: drift 26s ease-in-out infinite alternate; }
 .glow-b { width: 360px; height: 360px; bottom: -60px; left: -150px; background: radial-gradient(circle, rgba(255,255,255,.05), transparent 70%); animation: drift 32s ease-in-out infinite alternate-reverse; }
 @keyframes drift { from { transform: translate3d(0,0,0); } to { transform: translate3d(40px, 50px, 0); } }
 
@@ -198,10 +198,10 @@ body.menu-open .menu a:nth-child(5) { transition-delay: .26s; }
   height: 52px; padding: 0 26px; border-radius: 13px; border: none; cursor: pointer;
   background: var(--accent); color: #fff;
   font-family: var(--display); font-weight: 600; font-size: 15.5px; letter-spacing: .01em;
-  box-shadow: 0 10px 28px rgba(201,100,28,.22);
+  box-shadow: 0 10px 28px rgba(198,138,31,.22);
   transition: filter .25s ease, transform .25s ease, box-shadow .25s ease;
 }
-.btn:hover { filter: brightness(1.12); transform: translateY(-2px); box-shadow: 0 14px 34px rgba(201,100,28,.3); }
+.btn:hover { filter: brightness(1.12); transform: translateY(-2px); box-shadow: 0 14px 34px rgba(198,138,31,.3); }
 .btn:active { transform: scale(.97); }
 .btn-ghost {
   background: transparent; color: var(--ink); box-shadow: none;
@@ -272,6 +272,13 @@ body.menu-open .menu a:nth-child(5) { transition-delay: .26s; }
 .game-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.16); }
 .game-card + .game-card { margin-top: 22px; }
 .cover-frame { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 16 / 10; background: var(--g, #1A1612); }
+.cover-frame::after {
+  content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,.14) 47%, rgba(255,255,255,.04) 53%, transparent 62%);
+  transform: translateX(-130%);
+  animation: tile-shine 8s ease-in-out infinite;
+}
+.game-card.rev .cover-frame::after { animation-delay: 4s; }
 .cover-frame .cover-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .cover-shapes div { position: absolute; background: rgba(255,255,255,.8); }
 .g-tag { font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--accent-text); }
@@ -409,10 +416,12 @@ footer { padding: 56px 0 42px; }
 /* ---------- motion prefs ---------- */
 html[data-motion="subtle"] .glow-a, html[data-motion="subtle"] .glow-b { animation: none; }
 html[data-motion="subtle"] .hero-tile, html[data-motion="subtle"] .hero-tile::after { animation: none; }
+html[data-motion="subtle"] .cover-frame::after { animation: none; }
 html[data-motion="subtle"] body::before, html[data-motion="subtle"] body::after { animation: none; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .hero-tile, .hero-tile::after { animation: none; }
+  .cover-frame::after { animation: none; }
   .team-collapse { transition: none; }
   .glow-a, .glow-b { animation: none; }
   body::before, body::after { animation: none; transform: none; }
@@ -433,7 +442,7 @@ html[data-motion="subtle"] body::before, html[data-motion="subtle"] body::after 
   position: fixed; z-index: 94; top: 78px; left: 50%; transform: translate(-50%, -6px);
   display: flex; align-items: center; gap: 8px;
   padding: 8px 14px; border-radius: 999px;
-  background: rgba(17,18,23,.88); border: 1px solid rgba(217,130,47,.4);
+  background: rgba(17,18,23,.88); border: 1px solid rgba(229,172,63,.4);
   font-family: var(--display); font-size: 12px; font-weight: 700; letter-spacing: .14em; color: var(--accent-text);
   opacity: 0; pointer-events: none;
   transition: opacity .3s ease, transform .3s cubic-bezier(.2,.7,.2,1);
@@ -448,7 +457,7 @@ html[data-motion="subtle"] body::before, html[data-motion="subtle"] body::after 
   position: fixed; z-index: 96; left: 50%; bottom: 26px; transform: translate(-50%, 90px);
   display: flex; align-items: center; gap: 12px;
   padding: 13px 20px; border-radius: 14px;
-  background: #16161B; border: 1px solid rgba(217,130,47,.5);
+  background: #16161B; border: 1px solid rgba(229,172,63,.5);
   box-shadow: 0 16px 44px rgba(0,0,0,.6);
   opacity: 0; pointer-events: none;
   transition: transform .45s cubic-bezier(.2,.7,.2,1), opacity .45s ease;
@@ -462,7 +471,7 @@ html[data-motion="subtle"] body::before, html[data-motion="subtle"] body::after 
 .rpg-card {
   position: absolute; top: 12px; left: 50%; transform: translate(-50%, 8px);
   width: 180px; padding: 12px 14px; text-align: left;
-  background: #16161B; border: 1px solid rgba(217,130,47,.45); border-radius: 12px;
+  background: #16161B; border: 1px solid rgba(229,172,63,.45); border-radius: 12px;
   box-shadow: 0 14px 36px rgba(0,0,0,.55);
   opacity: 0; pointer-events: none; z-index: 6;
   transition: opacity .25s ease, transform .25s cubic-bezier(.2,.7,.2,1);
@@ -480,7 +489,7 @@ html[data-motion="subtle"] body::before, html[data-motion="subtle"] body::after 
   position: fixed; top: 0; left: 0; z-index: 97; width: 100%; height: 3px;
   transform: scaleX(0); transform-origin: 0 50%; pointer-events: none;
   background: linear-gradient(90deg, var(--accent), var(--accent-text));
-  box-shadow: 0 0 10px rgba(217,130,47,.4);
+  box-shadow: 0 0 10px rgba(229,172,63,.4);
 }
 .xp-chip {
   position: fixed; top: 12px; right: 16px; z-index: 97; pointer-events: none;
@@ -498,7 +507,7 @@ html[data-motion="subtle"] body::before, html[data-motion="subtle"] body::after 
 .egg-loot.on { opacity: 1; }
 .egg-beam {
   width: 56px; height: 38vh; margin-bottom: -10px;
-  background: linear-gradient(180deg, transparent, rgba(217,130,47,.07) 35%, rgba(217,130,47,.3));
+  background: linear-gradient(180deg, transparent, rgba(229,172,63,.07) 35%, rgba(229,172,63,.3));
   clip-path: polygon(28% 0, 72% 0, 100% 100%, 0 100%);
   transform-origin: bottom center; transform: scaleY(0);
   transition: transform .7s cubic-bezier(.2,.7,.2,1);
@@ -508,7 +517,7 @@ html[data-motion="subtle"] body::before, html[data-motion="subtle"] body::after 
   pointer-events: auto; cursor: pointer; background: none; border: none;
   width: 40px; height: 32px; padding: 0 0 14px; margin-bottom: 8px;
   animation: egg-chest-bob 1.6s ease-in-out infinite;
-  filter: drop-shadow(0 6px 14px rgba(217,130,47,.45));
+  filter: drop-shadow(0 6px 14px rgba(229,172,63,.45));
 }
 @keyframes egg-chest-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 @media (prefers-reduced-motion: reduce) {

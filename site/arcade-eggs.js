@@ -119,7 +119,7 @@
     'GBBBBBBBBG',
     '.GGGGGGGG.'
   ];
-  var CHEST_COLORS = { G: '#D9822F', B: '#6B4A22' };
+  var CHEST_COLORS = { G: '#E0A83E', B: '#6B4A22' };
   function lootDrop() {
     lootShown = true;
     var wrap = document.createElement('div');
