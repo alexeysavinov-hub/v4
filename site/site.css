@@ -183,10 +183,10 @@ body.menu-open .menu a:nth-child(5) { transition-delay: .26s; }
 .kicker { font-size: 11px; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--muted); }
 .hero h1 {
   font-family: var(--display); font-weight: 700; letter-spacing: -0.02em;
-  font-size: clamp(40px, 10.5vw, 76px); line-height: 1.02; margin: 16px 0;
+  font-size: clamp(40px, 10.5vw, 76px); line-height: 1.08; margin: 16px 0;
 }
 .hero h1 .ac { color: var(--accent-text); }
-.hw-clip { display: inline-block; overflow: hidden; vertical-align: bottom; }
+.hw-clip { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .14em; margin-bottom: -.14em; }
 .hw { display: inline-block; transform: translateY(110%); animation: hw-up .8s cubic-bezier(.2,.7,.2,1) forwards; animation-delay: calc(var(--i) * 70ms); }
 .hw.hw-done { transform: none !important; }
 @keyframes hw-up { to { transform: translateY(0); } }
@@ -400,4 +400,57 @@ html[data-motion="subtle"] body::before, html[data-motion="subtle"] body::after 
   .rv { opacity: 1; transform: none; transition: none; }
 }
 
+
 .tm-photo { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; }
+
+/* ---------- easter eggs ---------- */
+.egg-coin {
+  position: fixed; z-index: 95; width: 16px; height: 16px; pointer-events: none;
+  background: #E8A33D; border: 2px solid #8F5A12; border-radius: 4px;
+  box-shadow: inset -2px -2px 0 #B97718, inset 2px 2px 0 #FFD98A;
+}
+.egg-credits {
+  position: fixed; z-index: 94; top: 78px; left: 50%; transform: translate(-50%, -6px);
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border-radius: 999px;
+  background: rgba(17,18,23,.88); border: 1px solid rgba(217,130,47,.4);
+  font-family: var(--display); font-size: 12px; font-weight: 700; letter-spacing: .14em; color: var(--accent-text);
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s ease, transform .3s cubic-bezier(.2,.7,.2,1);
+}
+.egg-credits.on { opacity: 1; transform: translate(-50%, 0); }
+.egg-coin-ic {
+  width: 11px; height: 11px; border-radius: 3px; background: #E8A33D;
+  border: 1.5px solid #8F5A12; box-shadow: inset -1px -1px 0 #B97718, inset 1px 1px 0 #FFD98A;
+}
+.egg-px { position: fixed; z-index: 95; pointer-events: none; }
+.egg-toast {
+  position: fixed; z-index: 96; left: 50%; bottom: 26px; transform: translate(-50%, 90px);
+  display: flex; align-items: center; gap: 12px;
+  padding: 13px 20px; border-radius: 14px;
+  background: #16161B; border: 1px solid rgba(217,130,47,.5);
+  box-shadow: 0 16px 44px rgba(0,0,0,.6);
+  opacity: 0; pointer-events: none;
+  transition: transform .45s cubic-bezier(.2,.7,.2,1), opacity .45s ease;
+}
+.egg-toast.on { opacity: 1; transform: translate(-50%, 0); }
+.egg-star { font-size: 19px; color: var(--accent-text); line-height: 1; }
+.egg-toast-tx { display: flex; flex-direction: column; gap: 2px; }
+.egg-toast-tx b { font-family: var(--display); font-size: 10.5px; font-weight: 700; letter-spacing: .22em; color: var(--accent-text); }
+.egg-toast-tx span { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+.tm { position: relative; }
+.rpg-card {
+  position: absolute; top: 12px; left: 50%; transform: translate(-50%, 8px);
+  width: 180px; padding: 12px 14px; text-align: left;
+  background: #16161B; border: 1px solid rgba(217,130,47,.45); border-radius: 12px;
+  box-shadow: 0 14px 36px rgba(0,0,0,.55);
+  opacity: 0; pointer-events: none; z-index: 6;
+  transition: opacity .25s ease, transform .25s cubic-bezier(.2,.7,.2,1);
+}
+.rpg-card.on { opacity: 1; transform: translate(-50%, 0); }
+.rpg-top { font-family: var(--display); font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--accent-text); margin-bottom: 8px; white-space: nowrap; }
+.rpg-stat { display: grid; grid-template-columns: 36px 1fr 20px; align-items: center; gap: 7px; margin-top: 6px; font-family: var(--body); font-size: 10px; font-weight: 600; letter-spacing: .08em; color: var(--muted); }
+.rpg-stat i { display: block; height: 6px; background: rgba(255,255,255,.08); overflow: hidden; border-radius: 1px; }
+.rpg-stat i b { display: block; height: 100%; background: repeating-linear-gradient(90deg, var(--accent-text) 0 5px, rgba(0,0,0,.45) 5px 6px); }
+.rpg-stat em { font-style: normal; color: var(--ink); text-align: right; }
+
