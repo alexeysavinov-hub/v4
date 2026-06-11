@@ -3,7 +3,7 @@
   --bg: #0C0C0F;
   --ink: #F2F1ED;
   --muted: #9A978F;
-  --faint: #75736C;
+  --faint: #8A8780;
   --accent: #C68A1F;
   --accent-text: #E5AC3F;
   --card: rgba(255,255,255,.035);
@@ -367,7 +367,7 @@ body.menu-open .menu a:nth-child(6) { transition-delay: .31s; }
 .tm-name { font-family: var(--display); font-weight: 600; font-size: 15.5px; }
 .tm-role { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-text); margin-top: 4px; }
 .tm-bio { font-size: 12.5px; color: var(--muted); line-height: 1.5; margin: 8px 0 0; text-wrap: pretty; }
-.tm-li { display: inline-flex; align-items: center; gap: 5px; margin-top: 10px; font-family: var(--display); font-weight: 600; font-size: 12px; color: var(--muted); transition: color .25s ease; }
+.tm-li { display: inline-flex; align-items: center; gap: 5px; padding: 14px 12px; margin: -4px -12px -14px; font-family: var(--display); font-weight: 600; font-size: 12px; color: var(--muted); transition: color .25s ease; }
 .tm-li:hover { color: var(--accent-text); }
 .tm-li i { font-style: normal; }
 @media (min-width: 720px) { .team-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
@@ -702,3 +702,16 @@ html[data-motion="subtle"] .fx-swirl, html[data-motion="subtle"] .fx-rays, html[
   50% { text-shadow: 0 0 26px rgba(225, 90, 130, .75), 0 0 64px rgba(201, 74, 109, .4); }
 }
 @media (prefers-reduced-motion: reduce) { .hw-love { animation: none; text-shadow: none; } }
+.hero-trust { font-size: 13px; color: var(--muted); margin: 14px 0 0; letter-spacing: .02em; }
+
+/* love echoes: footer heart + selection color */
+.heart {
+  display: inline-block; color: #C94A6D; font-style: normal;
+  animation: heart-glow 3s ease-in-out infinite;
+}
+@keyframes heart-glow {
+  0%, 100% { text-shadow: 0 0 4px rgba(201, 74, 109, .3); }
+  50% { text-shadow: 0 0 9px rgba(225, 90, 130, .85), 0 0 18px rgba(201, 74, 109, .45); }
+}
+::selection { background: rgba(201, 74, 109, .45); color: #F2F1ED; }
+@media (prefers-reduced-motion: reduce) { .heart { animation: none; } }
