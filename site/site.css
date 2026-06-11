@@ -244,9 +244,12 @@ body.menu-open .menu a:nth-child(5) { transition-delay: .26s; }
 .hero-tile:last-child { --tilt: 2deg; animation-delay: -3s; }
 
 @media (min-width: 1024px) {
-  .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 48px; }
-  .hero-art { margin-top: 0; }
-  .hero-tile .ht-cover { height: 190px; }
+  .hero-grid { display: grid; grid-template-columns: .95fr 1.05fr; align-items: center; gap: 48px; }
+  .hero-art { margin-top: 0; gap: 20px; }
+  .hero-tile { width: min(24vw, 300px); }
+  .hero-tile .ht-cover { height: 240px; }
+  .hero-tile .ht-label { padding: 12px 16px; font-size: 16px; }
+  .hero-tile .ht-label small { font-size: 11px; }
   .hero-sub { font-size: 18px; }
 }
 
@@ -385,7 +388,8 @@ a.news-card { display: block; }
 .n-more { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; font-family: var(--display); font-weight: 600; font-size: 13px; color: var(--accent-text); }
 .n-more i { font-style: normal; transition: transform .25s ease; }
 .news-card:hover .n-more i { transform: translate(2px, -2px); }
-@media (min-width: 880px) { .news-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
+@media (min-width: 700px) { .news-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
+@media (min-width: 1024px) { .news-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; } .news-card { padding: 14px; } .n-title { font-size: 15.5px; } .n-blurb { font-size: 12.5px; } }
 
 /* ---------- contact ---------- */
 .contact-grid { display: grid; gap: 28px; }
@@ -422,6 +426,13 @@ footer { padding: 56px 0 42px; }
 .foot-inner { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
 .foot-inner img { height: 56px; opacity: .95; }
 .foot-inner p { font-size: 12.5px; color: var(--faint); margin: 0; }
+.foot-legal { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 26px; }
+.foot-legal a {
+  font-size: 13px; font-weight: 500; color: var(--muted);
+  padding: 6px 0; transition: color .25s ease;
+}
+.foot-legal a:hover { color: var(--accent-text); }
+
 
 /* ---------- easter eggs ---------- */
 .egg-coin {
