@@ -95,3 +95,25 @@
     f.addEventListener('input', function () { f.closest('.field').classList.remove('err'); });
   });
 })();
+
+/* Title No.3 — looping retro loading bar */
+(function () {
+  'use strict';
+  var bar = document.querySelector('.ld-bar b');
+  var pct = document.querySelector('.ld-text i');
+  if (!bar || !pct) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    bar.style.width = '73%'; pct.textContent = '73%'; return;
+  }
+  var DUR = 8000, last = -1;
+  function frame(t) {
+    var ph = (t % DUR) / DUR, p;
+    if (ph < 0.5) p = ph / 0.5 * 78;            // quick ramp
+    else if (ph < 0.88) p = 78 + (ph - 0.5) / 0.38 * 21; // slow crawl
+    else p = 99;                                  // hold at 99%
+    p = Math.floor(p);
+    if (p !== last) { last = p; bar.style.width = p + '%'; pct.textContent = p + '%'; }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
