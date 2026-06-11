@@ -74,10 +74,12 @@
     });
   }
 
-  /* ---- contact form ---- */
+  /* ---- contact form (delivers to admin@topapp.games via FormSubmit) ---- */
   var form = document.querySelector('.form');
+  var FORM_ENDPOINT = 'https://formsubmit.co/ajax/admin@topapp.games';
   form.addEventListener('submit', function (ev) {
     ev.preventDefault();
+    if (form.classList.contains('sending')) return;
     var ok = true;
     [['name', function (v) { return v.trim().length > 1; }],
      ['email', function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }],
@@ -89,7 +91,38 @@
       wrap.classList.toggle('err', !valid);
       if (!valid) ok = false;
     });
-    if (ok) form.classList.add('sent');
+    if (!ok) return;
+    var btn = form.querySelector('.btn');
+    var btnText = btn.textContent;
+    form.classList.add('sending');
+    btn.textContent = 'Sending\u2026';
+    btn.disabled = true;
+    var failNote = form.querySelector('.form-fail');
+    if (failNote) failNote.remove();
+    fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name: form.querySelector('[name="name"]').value.trim(),
+        email: form.querySelector('[name="email"]').value.trim(),
+        message: form.querySelector('[name="message"]').value.trim(),
+        _subject: 'New message from topapp.games website'
+      })
+    }).then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    }).then(function () {
+      form.classList.add('sent');
+    }).catch(function () {
+      var note = document.createElement('p');
+      note.className = 'form-fail';
+      note.innerHTML = 'Couldn\u2019t send right now \u2014 please email us directly at <a href="mailto:admin@topapp.games">admin@topapp.games</a>.';
+      btn.insertAdjacentElement('afterend', note);
+    }).finally(function () {
+      form.classList.remove('sending');
+      btn.textContent = btnText;
+      btn.disabled = false;
+    });
   });
   form.querySelectorAll('input, textarea').forEach(function (f) {
     f.addEventListener('input', function () { f.closest('.field').classList.remove('err'); });

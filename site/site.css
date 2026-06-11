@@ -715,3 +715,7 @@ html[data-motion="subtle"] .fx-swirl, html[data-motion="subtle"] .fx-rays, html[
 }
 ::selection { background: rgba(201, 74, 109, .45); color: #F2F1ED; }
 @media (prefers-reduced-motion: reduce) { .heart { animation: none; } }
+
+.form-fail { font-size: 13.5px; color: #D9694F; line-height: 1.5; margin: 10px 0 0; }
+.form-fail a { color: var(--accent-text); text-decoration: underline; }
+.form.sending .btn { opacity: .7; cursor: default; }
