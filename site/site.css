@@ -545,8 +545,6 @@ html[data-motion="subtle"] body::before, html[data-motion="subtle"] body::after 
 }
 
 
-.tm-photo { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; }
-
 /* third-title teaser */
 .hero-tile-back {
   position: absolute; left: 50%; top: -60px; z-index: 0;
@@ -690,3 +688,5 @@ html[data-motion="subtle"] .fx-swirl, html[data-motion="subtle"] .fx-rays, html[
   .tl-body::before { transform: scaleY(1); transition: none; }
   .tl-body::after { transform: scale(1); transition: none; animation: none; }
 }
+
+.tm-photo { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; }
