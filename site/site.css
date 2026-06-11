@@ -213,7 +213,7 @@ body.menu-open .menu a:nth-child(5) { transition-delay: .26s; }
 .hero-stats b { display: block; font-family: var(--display); font-size: 24px; font-weight: 700; }
 .hero-stats span { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); }
 
-.hero-art { position: relative; display: flex; gap: 16px; margin-top: 48px; justify-content: center; }
+.hero-art { position: relative; display: flex; gap: 16px; margin-top: 112px; justify-content: center; }
 .hero-tile {
   z-index: 1;
   width: min(42vw, 220px); border-radius: 18px; overflow: hidden;
@@ -632,4 +632,12 @@ html[data-motion="subtle"] .fx-swirl, html[data-motion="subtle"] .fx-rays, html[
 @media (prefers-reduced-motion: reduce) {
   .fx-swirl, .fx-rays, .fx-rock, .fx-sp { animation: none; }
   .fx-sp { opacity: .6; }
+}
+
+@media (max-width: 560px) {
+  .store-row { gap: 6px; flex-wrap: nowrap; }
+  .store-row .store-btn { flex: 1 1 0; min-width: 0; justify-content: center; height: 44px; padding: 0 8px; gap: 6px; }
+  .store-btn svg { width: 16px; height: 16px; }
+  .sb-text small { display: none; }
+  .sb-text b { font-size: 12px; white-space: nowrap; }
 }
